@@ -22,11 +22,15 @@ pnpm install
 npm install
 ```
 
+> **Note**: `npm install` automatically sets up husky pre-commit hooks via the `prepare` script.
+
 ### Running Development Server
 
 ```bash
 pnpm dev
 ```
+
+Open http://localhost:5173 in your browser to see the BookViewer demo.
 
 ### Running Tests
 
