@@ -1,10 +1,10 @@
 {
-  "name": "folio",
+  "name": "grimoire3d",
   "version": "0.0.0",
-  "description": "Page-flip animated documentation generator - Write beautiful docs like turning pages of a book",
+  "description": "3D magical book documentation generator - Transform your docs into an interactive grimoire",
   "type": "module",
   "bin": {
-    "folio": "./dist/cli/index.js"
+    "grimoire3d": "./dist/cli/index.js"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -46,18 +46,21 @@
     "mermaid",
     "page-flip",
     "book",
-    "react"
+    "react",
+    "3d",
+    "grimoire",
+    "webgl"
   ],
   "author": "kkm-horikawa",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kkm-horikawa/folio.git"
+    "url": "git+https://github.com/kkm-horikawa/grimoire3d.git"
   },
   "bugs": {
-    "url": "https://github.com/kkm-horikawa/folio/issues"
+    "url": "https://github.com/kkm-horikawa/grimoire3d/issues"
   },
-  "homepage": "https://github.com/kkm-horikawa/folio#readme",
+  "homepage": "https://github.com/kkm-horikawa/grimoire3d#readme",
   "engines": {
     "node": ">=22.0.0"
   },

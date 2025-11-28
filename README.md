@@ -1,13 +1,13 @@
-# folio
+# grimoire3d
 
-[![npm version](https://badge.fury.io/js/folio.svg)](https://badge.fury.io/js/folio)
+[![npm version](https://badge.fury.io/js/grimoire3d.svg)](https://badge.fury.io/js/grimoire3d)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A page-flip animated documentation generator. Write beautiful docs like turning pages of a book.
+A 3D magical book documentation generator. Transform your docs into an interactive grimoire with realistic page-flip animations.
 
 ## What is this?
 
-Folio transforms your Markdown documentation into an interactive book with realistic page-flip animations. Perfect for:
+Grimoire3D transforms your Markdown documentation into an interactive 3D book. Perfect for:
 
 - Project documentation
 - Design specifications
@@ -17,7 +17,7 @@ Folio transforms your Markdown documentation into an interactive book with reali
 
 ## Features
 
-- Page-flip animation with 3D effects
+- Realistic 3D page-flip animation
 - Markdown rendering
 - HTML support
 - Mermaid diagram support (planned)
@@ -28,11 +28,11 @@ Folio transforms your Markdown documentation into an interactive book with reali
 ## Installation
 
 ```bash
-npm install folio
+npm install grimoire3d
 # or
-pnpm add folio
+pnpm add grimoire3d
 # or
-yarn add folio
+yarn add grimoire3d
 ```
 
 ## Quick Start
@@ -41,7 +41,7 @@ yarn add folio
 
 ```
 my-project/
-├── folio.yml          # Configuration (optional)
+├── grimoire.yml       # Configuration (optional)
 └── docs/
     ├── index.md       # Cover page
     ├── 01-overview.md
@@ -66,18 +66,18 @@ This is an amazing project...
 ### 3. Start the dev server
 
 ```bash
-npx folio serve
+npx grimoire3d serve
 ```
 
 ### 4. Build for production
 
 ```bash
-npx folio build
+npx grimoire3d build
 ```
 
 ## Configuration
 
-Create a `folio.yml` file in your project root:
+Create a `grimoire.yml` file in your project root:
 
 ```yaml
 title: "My Project Documentation"
@@ -92,7 +92,7 @@ pages:
 ## Using as a React Component
 
 ```tsx
-import { BookViewer } from "folio/components";
+import { BookViewer } from "grimoire3d/components";
 
 const pages = [
   {
@@ -144,6 +144,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ## Inspiration
 
-- Vintage technical manuals and recipe books
-- WordPress Gutenberg's Synced Patterns
+- Ancient grimoires and magical tomes
+- Vintage technical manuals
 - React component libraries

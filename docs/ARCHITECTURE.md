@@ -45,7 +45,7 @@ docs/
 ├── 01-intro.md
 └── 02-guide.md
         ↓
-   [folio build]
+   [grimoire3d build]
         ↓
 dist/
 ├── index.html
@@ -57,7 +57,7 @@ dist/
 
 - Auto-detect Markdown files in `docs/` folder
 - Sensible defaults for everything
-- Optional `folio.yml` for customization
+- Optional `grimoire.yml` for customization
 
 ## Technical Decisions
 
@@ -112,7 +112,7 @@ dist/
 Inspired by mkdocs:
 
 ```yaml
-# folio.yml (optional)
+# grimoire.yml (optional)
 pages:
   - index.md        # Cover
   - intro.md        # Page 1

@@ -59,7 +59,7 @@ interface Theme {
 
 ## File Structure
 
-### folio.yml
+### grimoire.yml
 
 Configuration file for the documentation site.
 
@@ -97,28 +97,28 @@ Defines how far the viewer is from the 3D scene. Higher values = less dramatic 3
 
 ## Commands
 
-### folio serve
+### grimoire3d serve
 
 Start a development server with hot reload.
 
 ```bash
-npx folio serve
+npx grimoire3d serve
 ```
 
-### folio build
+### grimoire3d build
 
 Generate static HTML/JS files for deployment.
 
 ```bash
-npx folio build
+npx grimoire3d build
 ```
 
 ## Relationships
 
 ```
-User Files                   Folio Components
+User Files                   Grimoire3d Components
 ───────────────────────────────────────────────────
-folio.yml            →       FolioConfig
+grimoire.yml         →       FolioConfig
 docs/*.md            →       PageContent[]
 PageContent[]        →       BookViewer
 BookViewer           →       3D Animated Book

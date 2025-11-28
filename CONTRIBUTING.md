@@ -1,4 +1,4 @@
-# Contributing to folio
+# Contributing to grimoire3d
 
 Thank you for your interest in contributing!
 
@@ -12,8 +12,8 @@ Thank you for your interest in contributing!
 ### Clone and Setup
 
 ```bash
-git clone https://github.com/kkm-horikawa/folio.git
-cd folio
+git clone https://github.com/kkm-horikawa/grimoire3d.git
+cd grimoire3d
 
 # Using pnpm (recommended)
 pnpm install
@@ -167,7 +167,7 @@ pnpm test tests/components/BookViewer.test.tsx
 ## Project Structure
 
 ```
-folio/
+grimoire3d/
 ├── src/
 │   ├── index.ts              # Main exports
 │   ├── components/
@@ -228,12 +228,12 @@ Examples:
 1. **Fork the repository** on GitHub
 2. **Clone your fork**:
    ```bash
-   git clone https://github.com/<your-username>/folio.git
-   cd folio
+   git clone https://github.com/<your-username>/grimoire3d.git
+   cd grimoire3d
    ```
 3. **Add upstream remote**:
    ```bash
-   git remote add upstream https://github.com/kkm-horikawa/folio.git
+   git remote add upstream https://github.com/kkm-horikawa/grimoire3d.git
    ```
 4. **Create a branch from develop**:
    ```bash
@@ -266,4 +266,4 @@ git commit -m "chore: update dependencies"
 
 ## Questions?
 
-Open an [Issue](https://github.com/kkm-horikawa/folio/issues) for questions or discussions.
+Open an [Issue](https://github.com/kkm-horikawa/grimoire3d/issues) for questions or discussions.
