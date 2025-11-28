@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* Custom theme configuration */
+@theme {
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: Consolas, Monaco, "Courier New", monospace;
+
+  /* Book theme colors */
+  --color-book-bg: #251612;
+  --color-book-cover: #d32f2f;
+  --color-book-paper: #fdf6e3;
+  --color-book-text: #2c1a16;
+  --color-book-accent: #00b0ff;
+}
+
+/* Base styles for Folio */
+.folio-container {
+  font-family: var(--font-serif);
+}
+
+.folio-container code,
+.folio-container pre {
+  font-family: var(--font-mono);
+}
+
+/* Page content styles */
+.folio-page-content {
+  @apply h-full p-8 overflow-y-auto;
+}
+
+.folio-page-content h1 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.folio-page-content h2 {
+  @apply text-xl font-bold mb-3;
+}
+
+.folio-page-content h3 {
+  @apply text-lg font-bold mb-2;
+}
+
+.folio-page-content p {
+  @apply mb-4 leading-relaxed;
+}
+
+.folio-page-content ul,
+.folio-page-content ol {
+  @apply mb-4 pl-6;
+}
+
+.folio-page-content li {
+  @apply mb-2;
+}
+
+.folio-page-content code {
+  @apply bg-stone-100 px-1 rounded text-sm;
+}
+
+.folio-page-content pre {
+  @apply bg-stone-900 text-green-400 p-4 rounded-lg mb-4 overflow-x-auto text-sm;
+}
+
+.folio-page-content blockquote {
+  @apply border-l-4 border-stone-300 pl-4 italic text-stone-600 mb-4;
+}
