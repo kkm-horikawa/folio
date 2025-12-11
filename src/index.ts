@@ -5,4 +5,10 @@
  */
 
 export { BookViewer } from "./components/BookViewer";
-export type { BookViewerProps, FolioConfig, PageContent } from "./types";
+export type {
+  BookMaterialConfig,
+  BookViewerProps,
+  GrimoireConfig,
+  PageContent,
+  ThemeConfig,
+} from "./types";

@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 import type { BookViewerProps } from "../types";
 
 /**
@@ -68,12 +68,11 @@ export function BookViewer({
             };
 
             return (
-              <div
+              <button
+                type="button"
                 key={page.id}
-                role="button"
-                tabIndex={0}
                 aria-label={`Page ${index + 1}: ${page.title}`}
-                className="absolute inset-0 w-1/2 h-full left-1/2 origin-left transition-transform duration-700 ease-in-out transform-style-3d cursor-pointer"
+                className="absolute inset-0 w-1/2 h-full left-1/2 origin-left transition-transform duration-700 ease-in-out transform-style-3d cursor-pointer appearance-none border-none bg-transparent p-0 text-left"
                 style={{
                   zIndex,
                   transform: isFlipped ? "rotateY(-180deg)" : "rotateY(0deg)",
@@ -107,7 +106,7 @@ export function BookViewer({
                   </div>
                   <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-black/20 to-transparent pointer-events-none" />
                 </div>
-              </div>
+              </button>
             );
           })}
 
