@@ -58,9 +58,9 @@ jobs:
 
       - name: Publish dev version (Trusted Publishing)
         if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
-        run: pnpm publish --access public --tag dev --no-git-checks
+        run: npm publish --access public --tag dev
 
       # Production version: triggered by release
       - name: Publish production version (Trusted Publishing)
         if: github.event_name == 'release'
-        run: pnpm publish --access public --no-git-checks
+        run: npm publish --access public
