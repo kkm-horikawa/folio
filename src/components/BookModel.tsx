@@ -24,6 +24,7 @@ interface BookModelProps {
   currentPage: number;
   onNextPage?: () => void;
   onPrevPage?: () => void;
+  isReadingMode?: boolean;
 }
 
 interface Page3DProps {
@@ -34,6 +35,7 @@ interface Page3DProps {
   backContent?: ReactNode;
   onFlipForward: () => void;
   onFlipBackward: () => void;
+  isReadingMode: boolean;
 }
 
 /**
@@ -91,6 +93,7 @@ function Page3D({
   backContent,
   onFlipForward,
   onFlipBackward,
+  isReadingMode,
 }: Page3DProps) {
   const meshRef = useRef<THREE.Mesh>(null);
 
@@ -189,15 +192,13 @@ function Page3D({
 
       {/* Front content (visible when page is facing right, not yet flipped past 50%) */}
       {!showBackContent && (
-        <Html
-          position={[pageCenterX, 0, 0.01]}
-          transform
-          distanceFactor={3.5}
-          className="page-content"
-        >
-          {/* biome-ignore lint/a11y/noStaticElementInteractions: 3D page content */}
-          {/* biome-ignore lint/a11y/useKeyWithClickEvents: 3D page content */}
-          <div className="page-content-inner" onClick={onFlipForward}>
+        <Html position={[pageCenterX, 0, 0.01]} transform distanceFactor={3.5}>
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: 3D content click */}
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: 3D content click */}
+          <div
+            className={`page-content-inner ${isReadingMode ? "reading-mode" : "explore-mode"}`}
+            onClick={isReadingMode ? undefined : onFlipForward}
+          >
             {frontContent}
             <div className="page-number">{index * 2 + 1}</div>
           </div>
@@ -211,11 +212,13 @@ function Page3D({
           rotation={[0, Math.PI, 0]}
           transform
           distanceFactor={3.5}
-          className="page-content"
         >
-          {/* biome-ignore lint/a11y/noStaticElementInteractions: 3D page content */}
-          {/* biome-ignore lint/a11y/useKeyWithClickEvents: 3D page content */}
-          <div className="page-content-inner" onClick={onFlipBackward}>
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: 3D content click */}
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: 3D content click */}
+          <div
+            className={`page-content-inner ${isReadingMode ? "reading-mode" : "explore-mode"}`}
+            onClick={isReadingMode ? undefined : onFlipBackward}
+          >
             {backContent}
             <div className="page-number">{index * 2 + 2}</div>
           </div>
@@ -282,6 +285,7 @@ export function BookModel({
   currentPage,
   onNextPage,
   onPrevPage,
+  isReadingMode = true,
 }: BookModelProps) {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -308,6 +312,7 @@ export function BookModel({
           backContent={page.back}
           onFlipForward={() => onNextPage?.()}
           onFlipBackward={() => onPrevPage?.()}
+          isReadingMode={isReadingMode}
         />
       ))}
 

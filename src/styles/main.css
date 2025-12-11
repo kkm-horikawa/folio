@@ -65,30 +65,51 @@
   @apply border-l-4 border-stone-300 pl-4 italic text-stone-600 mb-4;
 }
 
-/* 3D page content container (Html component wrapper) */
-.page-content {
-  pointer-events: auto;
+/* Reading mode: enable text selection */
+.page-content-inner.reading-mode {
+  cursor: text;
+  user-select: text;
+}
+
+/* Explore mode: clickable for page flip */
+.page-content-inner.explore-mode {
+  cursor: pointer;
+  user-select: none;
 }
 
 .page-content-inner {
+  pointer-events: auto;
   position: relative;
   width: 280px;
   height: 400px;
-  overflow: hidden;
-  overflow: clip;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: #fffef5;
   color: #2c1a16;
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 14px;
   line-height: 1.5;
   padding: 20px;
+  padding-bottom: 40px;
   box-sizing: border-box;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
+/* Thin scrollbar styling */
 .page-content-inner::-webkit-scrollbar {
-  display: none;
+  width: 4px;
+}
+
+.page-content-inner::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.page-content-inner::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+.page-content-inner::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
 }
 
 .page-content-inner h1 {
