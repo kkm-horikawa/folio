@@ -174,6 +174,42 @@ describe("BookViewer", () => {
     });
   });
 
+  describe("mode toggle", () => {
+    it("renders mode toggle button", () => {
+      render(<BookViewer pages={mockPages} />);
+      expect(
+        screen.getByLabelText("Switch to explore mode")
+      ).toBeInTheDocument();
+    });
+
+    it("starts in reading mode by default", () => {
+      render(<BookViewer pages={mockPages} />);
+      expect(screen.getByText("Reading")).toBeInTheDocument();
+    });
+
+    it("toggles to explore mode when button is clicked", () => {
+      render(<BookViewer pages={mockPages} />);
+      const toggleButton = screen.getByLabelText("Switch to explore mode");
+
+      fireEvent.click(toggleButton);
+
+      expect(screen.getByText("Explore")).toBeInTheDocument();
+      expect(
+        screen.getByLabelText("Switch to reading mode")
+      ).toBeInTheDocument();
+    });
+
+    it("toggles back to reading mode when clicked again", () => {
+      render(<BookViewer pages={mockPages} />);
+      const toggleButton = screen.getByLabelText("Switch to explore mode");
+
+      fireEvent.click(toggleButton);
+      fireEvent.click(screen.getByLabelText("Switch to reading mode"));
+
+      expect(screen.getByText("Reading")).toBeInTheDocument();
+    });
+  });
+
   describe("edge cases", () => {
     it("handles empty pages array", () => {
       render(<BookViewer pages={[]} />);
