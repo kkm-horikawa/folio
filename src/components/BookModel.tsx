@@ -1,6 +1,8 @@
 import { animated, useSpring } from "@react-spring/three";
+import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import type { ReactNode } from "react";
+import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import type { PageContent } from "../types";
 
@@ -28,6 +30,8 @@ interface Page3DProps {
   index: number;
   totalPages: number;
   isFlipped: boolean;
+  frontContent?: ReactNode;
+  backContent?: ReactNode;
   onFlipForward: () => void;
   onFlipBackward: () => void;
 }
@@ -83,6 +87,8 @@ function Page3D({
   index,
   totalPages,
   isFlipped,
+  frontContent,
+  backContent,
   onFlipForward,
   onFlipBackward,
 }: Page3DProps) {
@@ -102,18 +108,37 @@ function Page3D({
 
   // Spring animation for flip
   // Flipped pages rotate to match the open cover angle (not full 180)
-  const { flipProgress, rotation, zPosition } = useSpring({
+  const { flipProgress, rotation } = useSpring({
     flipProgress: isFlipped ? 1 : 0,
     rotation: isFlipped ? COVER_OPEN_ANGLE : 0,
-    zPosition: isFlipped ? leftSideZ : rightSideZ,
     config: {
       mass: 1,
-      tension: 150,
-      friction: 20,
+      tension: 120,
+      friction: 26,
+      clamp: true, // Prevent overshoot/bounce
     },
   });
 
-  // Apply bend deformation
+  // Track which side is visible and z position based on flip progress
+  const [showBackContent, setShowBackContent] = useState(isFlipped);
+  const [useLeftZ, setUseLeftZ] = useState(isFlipped);
+  const lastShowBack = useRef(isFlipped);
+
+  // Apply bend deformation and track flip progress
+  useFrame(() => {
+    const progress = flipProgress.get();
+    // Switch content visibility and z position at 50% flip
+    const shouldShowBack = progress > 0.5;
+    if (shouldShowBack !== lastShowBack.current) {
+      lastShowBack.current = shouldShowBack;
+      setShowBackContent(shouldShowBack);
+      setUseLeftZ(shouldShowBack);
+    }
+  });
+
+  // Z position switches at 50% of animation
+  const zPos = useLeftZ ? leftSideZ : rightSideZ;
+
   useBendGeometry(meshRef, flipProgress.get());
 
   // Create page geometry with segments for bending
@@ -142,8 +167,11 @@ function Page3D({
     }
   };
 
+  // Center position of the page (for Html placement)
+  const pageCenterX = PAGE_WIDTH / 2;
+
   return (
-    <animated.group position-z={zPosition} rotation-y={rotation}>
+    <animated.group position-z={zPos} rotation-y={rotation}>
       {/* biome-ignore lint/a11y/noStaticElementInteractions: Three.js mesh */}
       <mesh
         ref={meshRef}
@@ -158,6 +186,41 @@ function Page3D({
           side={THREE.DoubleSide}
         />
       </mesh>
+
+      {/* Front content (visible when page is facing right, not yet flipped past 50%) */}
+      {!showBackContent && (
+        <Html
+          position={[pageCenterX, 0, 0.01]}
+          transform
+          distanceFactor={3.5}
+          className="page-content"
+        >
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: 3D page content */}
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: 3D page content */}
+          <div className="page-content-inner" onClick={onFlipForward}>
+            {frontContent}
+            <div className="page-number">{index * 2 + 1}</div>
+          </div>
+        </Html>
+      )}
+
+      {/* Back content (visible when page is flipped past 50%) */}
+      {showBackContent && (
+        <Html
+          position={[pageCenterX, 0, -0.01]}
+          rotation={[0, Math.PI, 0]}
+          transform
+          distanceFactor={3.5}
+          className="page-content"
+        >
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: 3D page content */}
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: 3D page content */}
+          <div className="page-content-inner" onClick={onFlipBackward}>
+            {backContent}
+            <div className="page-number">{index * 2 + 2}</div>
+          </div>
+        </Html>
+      )}
     </animated.group>
   );
 }
@@ -241,6 +304,8 @@ export function BookModel({
           index={index}
           totalPages={pages.length}
           isFlipped={index < currentPage}
+          frontContent={page.front}
+          backContent={page.back}
           onFlipForward={() => onNextPage?.()}
           onFlipBackward={() => onPrevPage?.()}
         />
