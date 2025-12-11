@@ -1,6 +1,9 @@
 name: Publish to npm
 
 on:
+  push:
+    branches:
+      - develop
   release:
     types: [published]
 
@@ -43,7 +46,21 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Publish to npm
+      # Dev version: triggered by push to develop
+      - name: Set dev version
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        run: |
+          BASE_VERSION=$(node -p "require('./package.json').version")
+          SHORT_SHA=${GITHUB_SHA::7}
+          DEV_VERSION="${BASE_VERSION}-dev.${SHORT_SHA}"
+          echo "Publishing dev version: ${DEV_VERSION}"
+          npm version ${DEV_VERSION} --no-git-tag-version
+
+      - name: Publish dev version (Trusted Publishing)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        run: pnpm publish --access public --tag dev --no-git-checks
+
+      # Production version: triggered by release
+      - name: Publish production version (Trusted Publishing)
+        if: github.event_name == 'release'
         run: pnpm publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

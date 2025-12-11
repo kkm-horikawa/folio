@@ -12,30 +12,31 @@ const samplePages: PageContent[] = [
     tabLabel: "INTRO",
     front: (
       <div className="folio-page-content">
-        <h1>Welcome to Folio</h1>
+        <h1>Welcome to Grimoire3D</h1>
         <p>
-          Folio is a page-flip animated documentation generator. Write beautiful
-          docs like turning pages of a book.
+          Grimoire3D is a 3D magical book documentation generator. Transform
+          your docs into an interactive grimoire with realistic page-flip
+          animations.
         </p>
         <h2>Features</h2>
         <ul>
-          <li>Beautiful page-flip animations</li>
+          <li>Realistic 3D page-flip animations</li>
           <li>Markdown support</li>
           <li>Mermaid diagrams</li>
-          <li>Responsive design</li>
+          <li>Multiple themes</li>
         </ul>
       </div>
     ),
     back: (
       <div className="folio-page-content">
         <h2>Getting Started</h2>
-        <p>Install Folio via npm:</p>
+        <p>Install Grimoire3D via npm:</p>
         <pre>
-          <code>npm install folio</code>
+          <code>npm install grimoire3d</code>
         </pre>
         <p>Then create your documentation files and run:</p>
         <pre>
-          <code>npx folio build</code>
+          <code>npx grimoire3d build</code>
         </pre>
       </div>
     ),
@@ -48,13 +49,11 @@ const samplePages: PageContent[] = [
     front: (
       <div className="folio-page-content">
         <h1>Basic Usage</h1>
-        <p>Create a folio.config.js in your project root:</p>
+        <p>Create a grimoire.yml in your project root:</p>
         <pre>
-          <code>{`export default {
-  title: 'My Docs',
-  pages: 'auto',
-  theme: 'classic'
-}`}</code>
+          <code>{`title: My Docs
+pages: auto
+theme: vintage-red`}</code>
         </pre>
       </div>
     ),
@@ -84,12 +83,12 @@ const samplePages: PageContent[] = [
     front: (
       <div className="folio-page-content">
         <h1>Customizing Themes</h1>
-        <p>Folio comes with several built-in themes:</p>
+        <p>Grimoire3D comes with several built-in themes:</p>
         <ul>
-          <li>Classic (default)</li>
-          <li>Dark</li>
-          <li>Sepia</li>
-          <li>Modern</li>
+          <li>vintage-red (default)</li>
+          <li>modern-dark</li>
+          <li>paper-white</li>
+          <li>forest-green</li>
         </ul>
       </div>
     ),
