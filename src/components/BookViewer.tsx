@@ -1,6 +1,6 @@
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Lock, Unlock } from "lucide-react";
 import { useState } from "react";
 import type { BookViewerProps } from "../types";
 import { BookModel } from "./BookModel";
@@ -30,6 +30,9 @@ export function BookViewer({
   showShadows = true,
 }: BookViewerProps) {
   const [currentPage, setCurrentPage] = useState(initialPage);
+  // Reading mode: camera locked, text selection enabled
+  // Explore mode: OrbitControls enabled, page click to flip
+  const [isReadingMode, setIsReadingMode] = useState(true);
   const totalPages = pages.length;
 
   /**
@@ -93,10 +96,11 @@ export function BookViewer({
             currentPage={currentPage}
             onNextPage={handleNext}
             onPrevPage={handlePrev}
+            isReadingMode={isReadingMode}
           />
 
-          {/* Optional orbit controls for debugging/viewing */}
-          {cameraControls && <OrbitControls />}
+          {/* OrbitControls enabled in explore mode or when cameraControls prop is true */}
+          {(!isReadingMode || cameraControls) && <OrbitControls />}
         </Canvas>
       </div>
 
@@ -157,6 +161,28 @@ export function BookViewer({
             {page.tabLabel || page.id}
           </button>
         ))}
+      </div>
+
+      {/* Mode Toggle Button */}
+      <div className="absolute left-4 top-4 z-40">
+        <button
+          type="button"
+          onClick={() => setIsReadingMode(!isReadingMode)}
+          aria-label={
+            isReadingMode ? "Switch to explore mode" : "Switch to reading mode"
+          }
+          className="bg-stone-800/80 hover:bg-stone-700 text-white p-3 rounded-lg backdrop-blur border border-stone-700 transition-all flex items-center gap-2"
+          title={
+            isReadingMode
+              ? "Explore mode: drag to rotate, scroll to zoom"
+              : "Reading mode: select text, scroll content"
+          }
+        >
+          {isReadingMode ? <Unlock size={20} /> : <Lock size={20} />}
+          <span className="text-xs">
+            {isReadingMode ? "Explore" : "Reading"}
+          </span>
+        </button>
       </div>
     </div>
   );
