@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "description": "3D magical book documentation generator - Transform your docs into an interactive grimoire",
   "type": "module",
-  "bin": {
-    "grimoire3d": "./dist/cli/index.js"
-  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -64,12 +61,16 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
     "lucide-react": "^0.555.0"
   },
   "devDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "@biomejs/biome": "^2.0.0",
     "@tailwindcss/vite": "^4.1.13",
     "@testing-library/dom": "^10.0.0",

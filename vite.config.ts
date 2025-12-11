@@ -14,8 +14,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(import.meta.dirname, "src/index.ts"),
-      name: "Folio",
-      fileName: "folio",
+      name: "Grimoire3D",
+      fileName: "grimoire3d",
     },
     rollupOptions: {
       external: ["react", "react-dom"],
