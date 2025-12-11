@@ -65,24 +65,20 @@
   @apply border-l-4 border-stone-300 pl-4 italic text-stone-600 mb-4;
 }
 
-/* 3D page content container (Html component wrapper) */
-.page-content {
-  pointer-events: auto;
-}
-
-/* Reading mode: enable text selection and scrolling */
-.page-content.reading-mode .page-content-inner {
+/* Reading mode: enable text selection */
+.page-content-inner.reading-mode {
   cursor: text;
   user-select: text;
 }
 
 /* Explore mode: clickable for page flip */
-.page-content.explore-mode .page-content-inner {
+.page-content-inner.explore-mode {
   cursor: pointer;
   user-select: none;
 }
 
 .page-content-inner {
+  pointer-events: auto;
   position: relative;
   width: 280px;
   height: 400px;

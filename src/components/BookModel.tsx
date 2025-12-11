@@ -192,16 +192,11 @@ function Page3D({
 
       {/* Front content (visible when page is facing right, not yet flipped past 50%) */}
       {!showBackContent && (
-        <Html
-          position={[pageCenterX, 0, 0.01]}
-          transform
-          distanceFactor={3.5}
-          className={`page-content ${isReadingMode ? "reading-mode" : "explore-mode"}`}
-        >
+        <Html position={[pageCenterX, 0, 0.01]} transform distanceFactor={3.5}>
           {/* biome-ignore lint/a11y/noStaticElementInteractions: 3D content click */}
           {/* biome-ignore lint/a11y/useKeyWithClickEvents: 3D content click */}
           <div
-            className="page-content-inner"
+            className={`page-content-inner ${isReadingMode ? "reading-mode" : "explore-mode"}`}
             onClick={isReadingMode ? undefined : onFlipForward}
           >
             {frontContent}
@@ -217,12 +212,11 @@ function Page3D({
           rotation={[0, Math.PI, 0]}
           transform
           distanceFactor={3.5}
-          className={`page-content ${isReadingMode ? "reading-mode" : "explore-mode"}`}
         >
           {/* biome-ignore lint/a11y/noStaticElementInteractions: 3D content click */}
           {/* biome-ignore lint/a11y/useKeyWithClickEvents: 3D content click */}
           <div
-            className="page-content-inner"
+            className={`page-content-inner ${isReadingMode ? "reading-mode" : "explore-mode"}`}
             onClick={isReadingMode ? undefined : onFlipBackward}
           >
             {backContent}

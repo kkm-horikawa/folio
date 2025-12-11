@@ -99,8 +99,13 @@ export function BookViewer({
             isReadingMode={isReadingMode}
           />
 
-          {/* OrbitControls enabled in explore mode or when cameraControls prop is true */}
-          {(!isReadingMode || cameraControls) && <OrbitControls />}
+          {/* OrbitControls: always mounted but disabled in reading mode */}
+          <OrbitControls
+            enabled={!isReadingMode || cameraControls}
+            enableRotate={!isReadingMode || cameraControls}
+            enableZoom={!isReadingMode || cameraControls}
+            enablePan={!isReadingMode || cameraControls}
+          />
         </Canvas>
       </div>
 
@@ -178,9 +183,9 @@ export function BookViewer({
               : "Reading mode: select text, scroll content"
           }
         >
-          {isReadingMode ? <Unlock size={20} /> : <Lock size={20} />}
+          {isReadingMode ? <Lock size={20} /> : <Unlock size={20} />}
           <span className="text-xs">
-            {isReadingMode ? "Explore" : "Reading"}
+            {isReadingMode ? "Reading" : "Explore"}
           </span>
         </button>
       </div>
