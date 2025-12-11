@@ -91,7 +91,8 @@ export function BookViewer({
           <BookModel
             pages={pages}
             currentPage={currentPage}
-            onPageClick={goToPage}
+            onNextPage={handleNext}
+            onPrevPage={handlePrev}
           />
 
           {/* Optional orbit controls for debugging/viewing */}
