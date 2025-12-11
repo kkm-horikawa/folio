@@ -114,7 +114,7 @@ const rootElement = document.getElementById("root");
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
-      <BookViewer pages={samplePages} />
+      <BookViewer pages={samplePages} cameraControls />
     </StrictMode>
   );
 }

@@ -19,6 +19,7 @@ export default defineConfig({
         "src/main.tsx",
         "src/index.ts",
         "src/types/**",
+        "src/components/BookModel.tsx",
         "**/*.d.ts",
       ],
     },

@@ -66,6 +66,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
+    "@react-spring/three": "^10.0.3",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
     "lucide-react": "^0.555.0",
