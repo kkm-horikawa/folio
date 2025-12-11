@@ -101,6 +101,52 @@ function renderPage(props: PageProps): JSX.Element {
 }
 ```
 
+### Comment Conventions
+
+#### JSDoc Comments (Required for public APIs)
+
+```typescript
+/**
+ * Flips the page to the specified index.
+ *
+ * @param pageIndex - The zero-based index of the target page
+ * @returns Whether the flip was successful
+ *
+ * @example
+ * ```ts
+ * flipToPage(3); // Flips to page 4
+ * ```
+ */
+function flipToPage(pageIndex: number): boolean {
+  // ...
+}
+```
+
+#### Inline Comments
+
+- Use `//` for single-line comments
+- Explain **"why"**, not "what"
+- Keep comments up-to-date with code changes
+
+```typescript
+// Bad: Describes what (obvious from code)
+// Increment the counter
+counter++;
+
+// Good: Explains why
+// Reset to 0 when reaching max to create a loop
+if (counter >= MAX_PAGES) counter = 0;
+```
+
+#### TODO/FIXME Comments
+
+Link to issues when possible:
+
+```typescript
+// TODO(#12): Implement drag gesture support
+// FIXME(#34): Safari has backface-visibility issue
+```
+
 ### Import Order
 
 Biome automatically organizes imports. Use `node:` prefix for Node.js built-ins:
