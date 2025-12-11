@@ -208,6 +208,23 @@ describe("BookViewer", () => {
 
       expect(screen.getByText("Reading")).toBeInTheDocument();
     });
+
+    it("enables OrbitControls when cameraControls prop is true even in reading mode", () => {
+      render(<BookViewer pages={mockPages} cameraControls />);
+      // In reading mode with cameraControls=true, should still show Reading label
+      expect(screen.getByText("Reading")).toBeInTheDocument();
+      // Canvas should be rendered (OrbitControls is inside)
+      expect(document.querySelector("canvas")).toBeInTheDocument();
+    });
+
+    it("shows explore mode UI after toggle with cameraControls enabled", () => {
+      render(<BookViewer pages={mockPages} cameraControls />);
+      const toggleButton = screen.getByLabelText("Switch to explore mode");
+
+      fireEvent.click(toggleButton);
+
+      expect(screen.getByText("Explore")).toBeInTheDocument();
+    });
   });
 
   describe("edge cases", () => {
