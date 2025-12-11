@@ -25,7 +25,7 @@
 
 /* Page content styles */
 .folio-page-content {
-  @apply h-full p-8 overflow-y-auto;
+  @apply h-full p-0 overflow-hidden;
 }
 
 .folio-page-content h1 {
@@ -63,4 +63,99 @@
 
 .folio-page-content blockquote {
   @apply border-l-4 border-stone-300 pl-4 italic text-stone-600 mb-4;
+}
+
+/* 3D page content container (Html component wrapper) */
+.page-content {
+  pointer-events: auto;
+}
+
+.page-content-inner {
+  position: relative;
+  width: 280px;
+  height: 400px;
+  overflow: hidden;
+  overflow: clip;
+  background: #fffef5;
+  color: #2c1a16;
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 20px;
+  box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.page-content-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.page-content-inner h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.page-content-inner h2 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.page-content-inner p {
+  margin-bottom: 8px;
+}
+
+.page-content-inner ul,
+.page-content-inner ol {
+  margin-bottom: 8px;
+  padding-left: 16px;
+}
+
+.page-content-inner li {
+  margin-bottom: 4px;
+}
+
+.page-content-inner pre {
+  background: #1a1a1a;
+  color: #4ade80;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-size: 9px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.page-content-inner code {
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  background: #f0f0f0;
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-size: 10px;
+}
+
+.page-content-inner pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.page-content-inner blockquote {
+  border-left: 3px solid #ccc;
+  padding-left: 8px;
+  font-style: italic;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
 }
