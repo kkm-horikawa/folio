@@ -1,6 +1,8 @@
 # grimoire3d
 
 [![npm version](https://badge.fury.io/js/grimoire3d.svg)](https://badge.fury.io/js/grimoire3d)
+[![CI](https://github.com/kkm-horikawa/grimoire3d/actions/workflows/ci.yml/badge.svg)](https://github.com/kkm-horikawa/grimoire3d/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/kkm-horikawa/grimoire3d/branch/develop/graph/badge.svg)](https://codecov.io/gh/kkm-horikawa/grimoire3d)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A 3D magical book documentation generator. Transform your docs into an interactive grimoire with realistic page-flip animations.
